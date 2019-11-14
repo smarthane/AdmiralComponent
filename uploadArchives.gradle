@@ -1,0 +1,3 @@
+apply plugin: 'maven'
+
+//TODO 上传各模块lib module到maven进行远程依赖，方便各module_x进行拆分到具体的工程单独运行（提升开发效率）。

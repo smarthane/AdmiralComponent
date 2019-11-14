@@ -1,0 +1,14 @@
+<resources>
+    <!-- font -->
+    <dimen name="netease_font_tiny">10sp</dimen>
+    <dimen name="netease_font_small">12sp</dimen>
+    <dimen name="netease_font_normal">14sp</dimen>
+    <dimen name="netease_font_normal2">16sp</dimen>
+    <dimen name="netease_font_normal3">20sp</dimen>
+    <dimen name="netease_font_large">24sp</dimen>
+
+    <dimen name="netease_fab_margin">16dp</dimen>
+    <dimen name="netease_text_margin">16dp</dimen>
+    <dimen name="netease_item_margin">8dp</dimen>
+    <dimen name="netease_title_margin">24dp</dimen>
+</resources>

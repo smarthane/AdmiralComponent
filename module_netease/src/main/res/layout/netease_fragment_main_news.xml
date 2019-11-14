@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/public_colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/public_colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="网易新闻"
+            app:titleTextColor="@color/public_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/public_colorPrimary"
+            android:orientation="horizontal">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:tabBackground="@color/public_colorPrimary"
+                app:tabIndicatorColor="@color/public_white"
+                app:tabTextColor="@color/public_color_F6F6F6"
+                app:tabSelectedTextColor="@color/public_white"
+                app:tabIndicatorGravity="bottom"/>
+
+            <ImageView
+                android:id="@+id/iv_add_channel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:maxHeight="?attr/actionBarSize"
+                android:padding="8dp"
+                android:src="@drawable/netease_ic_add" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/netease_ic_arrow_upward"
+        app:backgroundTint="@color/public_colorPrimary" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

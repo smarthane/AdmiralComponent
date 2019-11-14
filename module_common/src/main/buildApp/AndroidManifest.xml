@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.smarthane.admiralcomponent.common">
+
+    <application>
+        <activity
+            android:name=".mvp.ui.activity.SplashActivity"
+            android:label="@string/common_app_name"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mvp.ui.activity.LoginActivity"
+            android:label="@string/common_app_name"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".mvp.ui.activity.HomeActivity"
+            android:label="@string/common_app_name"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
+
+        <!-- 在组件集成宿主时, 由于宿主已经声明了 lib_common_sdk 的公有 ConfigModule, 所以在这里只需要声明业务组件自己的 ConfigModule -->
+        <meta-data
+            android:name="com.smarthane.admiralcomponent.common.app.GlobalConfiguration"
+            android:value="ConfigModule"/>
+    </application>
+</manifest>

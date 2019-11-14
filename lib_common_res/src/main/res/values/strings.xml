@@ -1,0 +1,10 @@
+<resources>
+    <string name="public_app_name">AdmiralComponent</string>
+    <string name="public_module_name">app</string>
+    <string name="public_loading">加载中</string>
+    <string name="public_name_common">通用业务</string>
+    <string name="public_name_zhihu">知乎日报</string>
+    <string name="public_name_gank">干货集中营</string>
+    <string name="public_name_gold">稀土掘金</string>
+    <string name="public_name_netease">网易新闻</string>
+</resources>

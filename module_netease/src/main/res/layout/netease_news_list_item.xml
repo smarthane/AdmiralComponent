@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    style="@style/netease_news_summary_card_view"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    app:contentPadding="2dp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_news_summary_photo"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/netease_item_margin"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_news_summary_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_news_summary_photo"
+            android:layout_marginRight="@dimen/netease_item_margin"
+            android:layout_toRightOf="@+id/iv_news_summary_photo"
+            android:lines="2"
+            android:textSize="@dimen/netease_font_normal"
+            tools:text="习近平:吹响建设科技强国号角国号角国号角" />
+
+        <TextView
+            android:id="@+id/tv_news_summary_digest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_news_summary_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="@dimen/netease_item_margin"
+            android:layout_toRightOf="@+id/iv_news_summary_photo"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="@dimen/netease_font_small"
+            tools:text="科技是国之利器，中国人民生活要好，必须有强大科技。" />
+
+        <TextView
+            android:id="@+id/tv_news_summary_ptime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_news_summary_digest"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/netease_item_margin"
+            android:layout_marginBottom="4dp"
+            android:textSize="@dimen/netease_font_tiny"
+            tools:text="05-28 20:09" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

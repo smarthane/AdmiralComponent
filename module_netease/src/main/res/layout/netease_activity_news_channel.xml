@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/netease_container_background"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/public_include_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/netease_channel_explain"
+        android:textSize="@dimen/netease_font_small" />
+
+    <TextView
+        style="@style/netease_news_channel_sort_title"
+        android:text="@string/netease_my_channel" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_news_channel_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never" />
+
+    <TextView
+        style="@style/netease_news_channel_sort_title"
+        android:text="@string/netease_more_channel" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_news_channel_more"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+</LinearLayout>

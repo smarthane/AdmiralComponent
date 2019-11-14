@@ -1,0 +1,18 @@
+<resources>
+    <string name="netease_module_name">ModuleNetease</string>
+
+    <!-- 新闻 -->
+    <string name="netease_photo_collections">图集：%1$s</string>
+    <string name="netease_news_from">%1$s %2$s</string>
+    <string name="netease_photo_detail_title">%1$d/%2$d　%3$s</string>
+    <string name="netease_web_view">WebView</string>
+    <string name="netease_photo_news">图片新闻</string>
+    <string name="netease_browser">用浏览器打开</string>
+    <string name="netease_share">分享</string>
+
+    <!-- 新闻频道 -->
+    <string name="netease_channel_explain">点击可增删/长按并拖拽可排序</string>
+    <string name="netease_my_channel">我的频道</string>
+    <string name="netease_more_channel">更多频道</string>
+    <string name="netease_channel_manage">频道管理</string>
+</resources>
