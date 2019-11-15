@@ -36,6 +36,17 @@ public class LogUtils {
         debugInfo(DEFAULT_TAG, msg);
     }
 
+    public static void errorInfo(String tag, String msg) {
+        if (!isLog || TextUtils.isEmpty(msg)) {
+            return;
+        }
+        Log.e(tag, msg);
+    }
+
+    public static void errorInfo(String msg) {
+        warnInfo(DEFAULT_TAG, msg);
+    }
+
     public static void warnInfo(String tag, String msg) {
         if (!isLog || TextUtils.isEmpty(msg)) {
             return;
@@ -46,6 +57,7 @@ public class LogUtils {
     public static void warnInfo(String msg) {
         warnInfo(DEFAULT_TAG, msg);
     }
+
 
     /**
      * 这里使用自己分节的方式来输出足够长度的 message

@@ -19,7 +19,7 @@ import retrofit2.HttpException;
 /**
  * @author smarthane
  * @time 2019/11/10 14:18
- * @describe
+ * @describe 全局异常处理
  */
 public class ResponseErrorListenerImpl implements ResponseErrorListener {
 
