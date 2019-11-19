@@ -4,37 +4,36 @@ import com.smarthane.admiral.component.common.sdk.http.eapi.EapiCallback;
 import com.smarthane.admiral.component.common.sdk.http.eapi.EasyApiHelper;
 import com.smarthane.admiral.core.mvp.BaseModel;
 import com.smarthane.admiral.core.util.LogUtils;
-import com.smarthane.admiralcomponent.common.mvp.contract.LoginContract;
-import com.smarthane.admiralcomponent.common.mvp.model.api.request.LoginRequest;
-import com.smarthane.admiralcomponent.common.mvp.model.entity.LoginResponse;
+import com.smarthane.admiralcomponent.common.mvp.contract.HomeContract;
+import com.smarthane.admiralcomponent.common.mvp.model.api.request.BannerRequest;
+import com.smarthane.admiralcomponent.common.mvp.model.entity.BannerResponse;
 
 /**
  * @author smarthane
- * @time 2019/11/10 16:38
+ * @time 2019/11/17 14:43
  * @describe
  */
-public class LoginModel extends BaseModel implements LoginContract.Model {
+public class HomeModel extends BaseModel implements HomeContract.Model {
 
     private Object tag;
 
-    public LoginModel() {
+    public HomeModel() {
     }
 
     @Override
-    public void login(LoginRequest request, EapiCallback<LoginResponse> eapiCallback) {
+    public void loadBanner(BannerRequest request, EapiCallback<BannerResponse> callback) {
         if (request != null) {
             tag = request.getTag();
         }
-        EasyApiHelper.post(request, eapiCallback);
+        EasyApiHelper.get(request, callback);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogUtils.debugInfo("module_common LoginModel onDestroy");
+        LogUtils.debugInfo("module_common HomeModel onDestroy");
         if (tag != null) {
             EasyApiHelper.cancel(tag);
         }
     }
-
 }

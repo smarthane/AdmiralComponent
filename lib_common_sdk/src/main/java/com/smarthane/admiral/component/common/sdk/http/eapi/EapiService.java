@@ -31,7 +31,7 @@ public interface EapiService {
      * @param params
      * @return
      */
-    @GET()
+    @GET
     Observable<ResponseBody> get(
             @Url String url,
             @QueryMap Map<String, Object> params
@@ -45,9 +45,9 @@ public interface EapiService {
      * @return
      */
     @FormUrlEncoded
-    @POST()
+    @POST
     Observable<ResponseBody> post(
-            @Url() String url,
+            @Url String url,
             @FieldMap Map<String, Object> params
     );
 
@@ -59,9 +59,9 @@ public interface EapiService {
      * @return
      */
     @Streaming
-    @GET()
+    @GET
     Observable<ResponseBody> downloadFile(
-            @Url() String url,
+            @Url String url,
             @QueryMap Map<String, Object> params
     );
 
@@ -73,10 +73,10 @@ public interface EapiService {
      * @return
      */
     @Multipart
-    @POST()
+    @POST
     Observable<ResponseBody> uploadFiles(
-            @Url() String url,
-            @Part() List<MultipartBody.Part> parts
+            @Url String url,
+            @Part List<MultipartBody.Part> parts
     );
 
 }

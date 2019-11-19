@@ -7,7 +7,10 @@ import com.smarthane.admiral.component.common.sdk.util.BeanUtils;
 import com.smarthane.admiral.core.base.AppComponent;
 import com.smarthane.admiral.core.base.rx.errorhandler.ErrorHandleSubscriber;
 import com.smarthane.admiral.core.base.rx.errorhandler.RetryWithDelay;
+import com.smarthane.admiral.core.util.LogUtils;
 
+import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -44,12 +47,12 @@ public class EasyApiHelper {
      * @param request
      * @param eapiCallback
      */
-    public static void get(final EapiBaseRequest request, final EapiCallback eapiCallback) {
+    public static <T extends Object> void get(final EapiBaseRequest request, final EapiCallback<T> eapiCallback) {
         AppComponent
                 .get()
                 .fetchRepositoryManager()
                 .obtainRetrofitService(EapiService.class)
-                .get(request.getUrl(), BeanUtils.describe(request))
+                .get(request.getUrl(), BeanUtils.describe(request, request.getExcludes()))
                 .subscribeOn(Schedulers.io())
                 // 遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
                 .retryWhen(new RetryWithDelay(
@@ -59,6 +62,8 @@ public class EasyApiHelper {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
+                        LogUtils.debugInfo("EasyApiHelper Get doOnSubscribe");
+                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
                         addDisposable(request.getTag(), disposable);
                         if (eapiCallback != null) {
                             eapiCallback.onStart(disposable);
@@ -69,6 +74,7 @@ public class EasyApiHelper {
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
+                        LogUtils.debugInfo("EasyApiHelper Get doFinally");
                         removeDisposable(request.getTag());
                         if (eapiCallback != null) {
                             eapiCallback.onComplete();
@@ -81,13 +87,27 @@ public class EasyApiHelper {
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
-                        //TODO T转换
-                        eapiCallback.onSuccess(responseBody);
+                        try {
+                            LogUtils.debugInfo("EasyApiHelper Get onNext");
+                            ParameterizedType type = (ParameterizedType) eapiCallback.getClass()
+                                    .getGenericSuperclass();
+                            T resultData = AppComponent
+                                    .get()
+                                    .fetchGson()
+                                    .fromJson(responseBody.string(), type.getActualTypeArguments()[0]);
+                            if (eapiCallback != null) {
+                                eapiCallback.onSuccess(resultData);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            LogUtils.errorInfo(e.getMessage());
+                        }
                     }
 
                     @Override
                     public void onError(@NonNull Throwable t) {
                         super.onError(t);
+                        LogUtils.debugInfo("EasyApiHelper Get onError " + t.getMessage());
                         removeDisposable(request.getTag());
                         if (eapiCallback != null) {
                             eapiCallback.onFail(t);
@@ -97,6 +117,89 @@ public class EasyApiHelper {
                     @Override
                     public void onComplete() {
                         super.onComplete();
+                        LogUtils.debugInfo("EasyApiHelper Get onComplete");
+                        removeDisposable(request.getTag());
+                    }
+                });
+    }
+
+    /**
+     * post请求
+     *
+     * @param request
+     * @param eapiCallback
+     */
+    public static <T extends Object> void post(final EapiBaseRequest request, final EapiCallback<T> eapiCallback) {
+        AppComponent
+                .get()
+                .fetchRepositoryManager()
+                .obtainRetrofitService(EapiService.class)
+                .post(request.getUrl(), BeanUtils.describe(request, request.getExcludes()))
+                .subscribeOn(Schedulers.io())
+                // 遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
+                .retryWhen(new RetryWithDelay(
+                        request.getRetryCount(),
+                        request.getRetryDelayMillis()
+                ))
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        LogUtils.debugInfo("EasyApiHelper Post doOnSubscribe");
+                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
+                        addDisposable(request.getTag(), disposable);
+                        if (eapiCallback != null) {
+                            eapiCallback.onStart(disposable);
+                        }
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        LogUtils.debugInfo("EasyApiHelper Post doFinally");
+                        removeDisposable(request.getTag());
+                        if (eapiCallback != null) {
+                            eapiCallback.onComplete();
+                        }
+                    }
+                })
+                .subscribe(new ErrorHandleSubscriber<ResponseBody>(AppComponent
+                        .get()
+                        .fetchRxErrorHandler()) {
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            LogUtils.debugInfo("EasyApiHelper Post onNext");
+                            ParameterizedType type = (ParameterizedType) eapiCallback.getClass()
+                                    .getGenericSuperclass();
+                            T resultData = AppComponent
+                                    .get()
+                                    .fetchGson()
+                                    .fromJson(responseBody.string(), type.getActualTypeArguments()[0]);
+                            if (eapiCallback != null) {
+                                eapiCallback.onSuccess(resultData);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            LogUtils.errorInfo(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable t) {
+                        super.onError(t);
+                        LogUtils.debugInfo("EasyApiHelper Post onError " + t.getMessage());
+                        removeDisposable(request.getTag());
+                        if (eapiCallback != null) {
+                            eapiCallback.onFail(t);
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        super.onComplete();
+                        LogUtils.debugInfo("EasyApiHelper Post onComplete");
                         removeDisposable(request.getTag());
                     }
                 });

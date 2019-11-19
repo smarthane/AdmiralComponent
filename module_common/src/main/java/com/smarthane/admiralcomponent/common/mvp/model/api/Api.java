@@ -8,4 +8,9 @@ package com.smarthane.admiralcomponent.common.mvp.model.api;
 public interface Api {
     String COMMON_DOMAIN_NAME = "common";
     String COMMON_DOMAIN = "https://www.wanandroid.com";
+
+
+
+    String COMMON_BANNER = "/banner/json";
+    String COMMON_USER_LOGIN = "/user/login";
 }

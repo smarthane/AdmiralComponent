@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/public_AppTheme">
         <activity
-            android:name=".mvp.ui.activity.SplashActivity"
+            android:name=".mvp.ui.activity.HomeActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,7 +35,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".mvp.ui.activity.HomeActivity"
+            android:name=".mvp.ui.activity.SplashActivity"
             android:label="@string/common_app_name"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"/>

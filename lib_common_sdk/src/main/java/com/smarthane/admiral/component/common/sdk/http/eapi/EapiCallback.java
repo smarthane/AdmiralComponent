@@ -9,7 +9,6 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class EapiCallback<T> {
 
-
     public void onStart(Disposable disposable) {
         // do nothing
     }

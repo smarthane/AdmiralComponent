@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.smarthane.admiral.component.common.sdk.http.eapi.EasyApiHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author smarthane
  * @time 2019/11/10 13:54
@@ -12,6 +15,8 @@ import com.smarthane.admiral.component.common.sdk.http.eapi.EasyApiHelper;
 public abstract class EapiBaseRequest {
 
     protected Context mContext;
+    protected List<String> mExcludes = new ArrayList<>();
+    private StringBuilder mUrlParamsBuilder = new StringBuilder();
 
     public EapiBaseRequest(Context mContext) {
         this.mContext = mContext;
@@ -30,11 +35,34 @@ public abstract class EapiBaseRequest {
     }
 
     public String getUrl() {
-        return getBaseUrl() + getSuffixUrl();
+        String url = getBaseUrl() + getSuffixUrl();
+        if (mUrlParamsBuilder.length() > 0) {
+            url = url + mUrlParamsBuilder.toString();
+        }
+        return url;
     }
 
     public Object getTag() {
-        return mContext;
+        return this;
+    }
+
+    public EapiBaseRequest addUrlParam(String paramKey, String paramValue) {
+        if (paramKey != null && paramValue != null) {
+            if (mUrlParamsBuilder.length() == 0) {
+                mUrlParamsBuilder.append("?");
+            } else {
+                mUrlParamsBuilder.append("&");
+            }
+            mUrlParamsBuilder.append(paramKey).append("=").append(paramValue);
+        }
+        return this;
+    }
+
+    public List<String> getExcludes() {
+        mExcludes.add("mContext");
+        mExcludes.add("mExcludes");
+        mExcludes.add("mUrlParamsBuilder");
+        return mExcludes;
     }
 
     public abstract String getSuffixUrl();
