@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.smarthane.admiral.component.common.sdk.http.eapi.EasyApiHelper;
 import com.smarthane.admiral.core.util.AdmiralUtils;
 import com.smarthane.admiral.core.util.LogUtils;
 
@@ -82,5 +83,6 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
         LogUtils.debugInfo("ActivityLifecycleCallbacksImpl onActivityDestroyed");
+        EasyApiHelper.cancel(activity);
     }
 }

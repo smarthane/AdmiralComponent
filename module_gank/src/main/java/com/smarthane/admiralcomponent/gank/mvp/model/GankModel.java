@@ -6,6 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent;
 import com.smarthane.admiral.core.mvp.BaseModel;
 import com.smarthane.admiral.core.util.LogUtils;
 import com.smarthane.admiralcomponent.gank.mvp.contract.GankHomeContract;
+import com.smarthane.admiralcomponent.gank.mvp.model.api.cache.GankCache;
 import com.smarthane.admiralcomponent.gank.mvp.model.api.service.GankService;
 import com.smarthane.admiralcomponent.gank.mvp.model.entity.GankBaseResponse;
 import com.smarthane.admiralcomponent.gank.mvp.model.entity.GankItemBean;
@@ -28,8 +29,11 @@ public class GankModel extends BaseModel implements GankHomeContract.Model {
     @Override
     public Observable<GankBaseResponse<List<GankItemBean>>> getGirlList(int num, int page) {
         return mRepositoryManager
+                .obtainCacheService(GankCache.class)
+                .getGirlList(mRepositoryManager
                 .obtainRetrofitService(GankService.class)
-                .getGirlList(num, page);
+                .getGirlList(num, page));
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

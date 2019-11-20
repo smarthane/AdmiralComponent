@@ -38,7 +38,7 @@ dependencies {
     }
     api(rootProject.ext.dependencies["rxcache2"]) {
         exclude module: 'rxjava'
-        exclude module: 'dagger'
+        // exclude module: 'dagger'
         exclude module: 'api'
     }
     api(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {

@@ -15,16 +15,11 @@ import com.smarthane.admiralcomponent.common.mvp.model.entity.BannerResponse;
  */
 public class HomeModel extends BaseModel implements HomeContract.Model {
 
-    private Object tag;
-
     public HomeModel() {
     }
 
     @Override
     public void loadBanner(BannerRequest request, EapiCallback<BannerResponse> callback) {
-        if (request != null) {
-            tag = request.getTag();
-        }
         EasyApiHelper.get(request, callback);
     }
 
@@ -32,8 +27,5 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     public void onDestroy() {
         super.onDestroy();
         LogUtils.debugInfo("module_common HomeModel onDestroy");
-        if (tag != null) {
-            EasyApiHelper.cancel(tag);
-        }
     }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public abstract class EapiBaseRequest {
 
     protected Context mContext;
+    protected Object mTag;
     protected List<String> mExcludes = new ArrayList<>();
     private StringBuilder mUrlParamsBuilder = new StringBuilder();
 
@@ -42,8 +43,15 @@ public abstract class EapiBaseRequest {
         return url;
     }
 
+    public void setTag(Object mTag) {
+        this.mTag = mTag;
+    }
+
     public Object getTag() {
-        return this;
+        if (mTag != null) {
+            return mTag;
+        }
+        return mContext;
     }
 
     public EapiBaseRequest addUrlParam(String paramKey, String paramValue) {
@@ -62,6 +70,7 @@ public abstract class EapiBaseRequest {
         mExcludes.add("mContext");
         mExcludes.add("mExcludes");
         mExcludes.add("mUrlParamsBuilder");
+        mExcludes.add("mTag");
         return mExcludes;
     }
 

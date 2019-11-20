@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -31,7 +32,9 @@ public class EasyApiHelper {
 
     private static final EapiGlobalConfig NET_GLOBAL_CONFIG = EapiGlobalConfig.get();
 
-    private static ConcurrentHashMap<Object, Disposable> arrayMaps = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Object, CompositeDisposable> arrayMaps = new ConcurrentHashMap<>();
+
+
 
     public static EapiGlobalConfig config() {
         return NET_GLOBAL_CONFIG;
@@ -48,6 +51,9 @@ public class EasyApiHelper {
      * @param eapiCallback
      */
     public static <T extends Object> void get(final EapiBaseRequest request, final EapiCallback<T> eapiCallback) {
+        if (request == null) {
+            return;
+        }
         AppComponent
                 .get()
                 .fetchRepositoryManager()
@@ -63,27 +69,27 @@ public class EasyApiHelper {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         LogUtils.debugInfo("EasyApiHelper Get doOnSubscribe");
-                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
-                        addDisposable(request.getTag(), disposable);
                         if (eapiCallback != null) {
-                            eapiCallback.onStart(disposable);
+                            eapiCallback.onStart();
                         }
                     }
                 })
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        LogUtils.debugInfo("EasyApiHelper Get doFinally");
-                        removeDisposable(request.getTag());
-                        if (eapiCallback != null) {
-                            eapiCallback.onComplete();
-                        }
-                    }
-                })
                 .subscribe(new ErrorHandleSubscriber<ResponseBody>(AppComponent
                         .get()
                         .fetchRxErrorHandler()) {
+
+                    private Disposable mDisposable;
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable disposable) {
+                        super.onSubscribe(disposable);
+                        LogUtils.debugInfo("EasyApiHelper Get onSubscribe");
+                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
+                        addDisposable(request.getTag(), disposable);
+                        mDisposable = disposable;
+                    }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
@@ -108,17 +114,20 @@ public class EasyApiHelper {
                     public void onError(@NonNull Throwable t) {
                         super.onError(t);
                         LogUtils.debugInfo("EasyApiHelper Get onError " + t.getMessage());
-                        removeDisposable(request.getTag());
                         if (eapiCallback != null) {
                             eapiCallback.onFail(t);
                         }
+                        removeDisposable(request.getTag(), mDisposable);
                     }
 
                     @Override
                     public void onComplete() {
                         super.onComplete();
                         LogUtils.debugInfo("EasyApiHelper Get onComplete");
-                        removeDisposable(request.getTag());
+                        if (eapiCallback != null) {
+                            eapiCallback.onComplete();
+                        }
+                        removeDisposable(request.getTag(), mDisposable);
                     }
                 });
     }
@@ -145,27 +154,27 @@ public class EasyApiHelper {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         LogUtils.debugInfo("EasyApiHelper Post doOnSubscribe");
-                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
-                        addDisposable(request.getTag(), disposable);
                         if (eapiCallback != null) {
-                            eapiCallback.onStart(disposable);
+                            eapiCallback.onStart();
                         }
                     }
                 })
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        LogUtils.debugInfo("EasyApiHelper Post doFinally");
-                        removeDisposable(request.getTag());
-                        if (eapiCallback != null) {
-                            eapiCallback.onComplete();
-                        }
-                    }
-                })
                 .subscribe(new ErrorHandleSubscriber<ResponseBody>(AppComponent
                         .get()
                         .fetchRxErrorHandler()) {
+
+                    private Disposable mDisposable;
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable disposable) {
+                        super.onSubscribe(disposable);
+                        LogUtils.debugInfo("EasyApiHelper Post onSubscribe");
+                        LogUtils.debugInfo("Request Tag --->　" + request.getTag().toString());
+                        addDisposable(request.getTag(), disposable);
+                        mDisposable = disposable;
+                    }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
@@ -190,47 +199,58 @@ public class EasyApiHelper {
                     public void onError(@NonNull Throwable t) {
                         super.onError(t);
                         LogUtils.debugInfo("EasyApiHelper Post onError " + t.getMessage());
-                        removeDisposable(request.getTag());
                         if (eapiCallback != null) {
                             eapiCallback.onFail(t);
                         }
+                        removeDisposable(request.getTag(), mDisposable);
                     }
 
                     @Override
                     public void onComplete() {
                         super.onComplete();
                         LogUtils.debugInfo("EasyApiHelper Post onComplete");
-                        removeDisposable(request.getTag());
+                        if (eapiCallback != null) {
+                            eapiCallback.onComplete();
+                        }
+                        removeDisposable(request.getTag(), mDisposable);
                     }
                 });
     }
 
     private static void addDisposable(Object tag, Disposable disposable) {
-        arrayMaps.put(tag, disposable);
-    }
-
-    private static void removeDisposable(Object tag) {
-        if (!arrayMaps.isEmpty()) {
-            arrayMaps.remove(tag);
+        if (tag == null) {
+            return;
         }
+        CompositeDisposable compositeDisposable = arrayMaps.get(tag);
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+            arrayMaps.put(tag, compositeDisposable);
+        }
+        compositeDisposable.add(disposable);
     }
 
-    private static void removeAllDisposable() {
-        if (!arrayMaps.isEmpty()) {
-            arrayMaps.clear();
+    private static void removeDisposable(Object tag, Disposable disposable) {
+        if (tag == null) {
+            return;
+        }
+        CompositeDisposable compositeDisposable = arrayMaps.get(tag);
+        if (compositeDisposable != null) {
+            compositeDisposable.remove(disposable);
+            if (compositeDisposable.size() == 0) {
+                compositeDisposable.clear();
+                arrayMaps.remove(tag);
+            }
         }
     }
 
     public static void cancel(Object tag) {
-        if (arrayMaps.isEmpty()) {
+        if (tag == null) {
             return;
         }
-        if (arrayMaps.get(tag) == null) {
-            return;
-        }
-        if (!arrayMaps.get(tag).isDisposed()) {
-            arrayMaps.get(tag).dispose();
-            arrayMaps.remove(tag);
+        CompositeDisposable compositeDisposable = arrayMaps.remove(tag);
+        if (compositeDisposable != null) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
         }
     }
 

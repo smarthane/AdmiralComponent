@@ -1,7 +1,5 @@
 package com.smarthane.admiral.component.common.sdk.http.eapi;
 
-import io.reactivex.disposables.Disposable;
-
 /**
  * @author smarthane
  * @time 2019/11/10 11:30
@@ -9,7 +7,7 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class EapiCallback<T> {
 
-    public void onStart(Disposable disposable) {
+    public void onStart() {
         // do nothing
     }
 

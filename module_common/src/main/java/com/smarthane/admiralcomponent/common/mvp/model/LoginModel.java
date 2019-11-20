@@ -15,16 +15,11 @@ import com.smarthane.admiralcomponent.common.mvp.model.entity.LoginResponse;
  */
 public class LoginModel extends BaseModel implements LoginContract.Model {
 
-    private Object tag;
-
     public LoginModel() {
     }
 
     @Override
     public void login(LoginRequest request, EapiCallback<LoginResponse> eapiCallback) {
-        if (request != null) {
-            tag = request.getTag();
-        }
         EasyApiHelper.post(request, eapiCallback);
     }
 
@@ -32,9 +27,6 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
     public void onDestroy() {
         super.onDestroy();
         LogUtils.debugInfo("module_common LoginModel onDestroy");
-        if (tag != null) {
-            EasyApiHelper.cancel(tag);
-        }
     }
 
 }
