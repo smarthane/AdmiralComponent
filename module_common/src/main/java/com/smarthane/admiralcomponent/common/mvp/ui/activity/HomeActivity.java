@@ -132,7 +132,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     private void startUpload() {
         EapiUploadRequest request = new EapiUploadRequest(this);
-        request.setUploadUrl("http://10.130.162.57:8010/doUpload");
+        request.setUploadUrl("http://192.168.1.57:8010/doUpload");
         request.setUploadFile(new File("/storage/emulated/0/Android/data/com.smarthane.admiralcomponent.common/cache/eapi_file_cache/wx13.apk"));
         request.enableProgres();
         EasyApiHelper.uploadFile(request, new EapiUploadCallback() {
