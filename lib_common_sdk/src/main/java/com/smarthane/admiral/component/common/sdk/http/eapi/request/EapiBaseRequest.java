@@ -11,6 +11,7 @@ import java.util.List;
  * @author smarthane
  * @time 2019/11/10 13:54
  * @describe 通用的请求基类
+ * TODO 缓存配置
  */
 public abstract class EapiBaseRequest {
 

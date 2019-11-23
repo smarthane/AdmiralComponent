@@ -2,12 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="这是通用模块：如闪屏、登录、首页等等共有业务写在此模块"/>
+        android:text="这是通用模块：如闪屏、登录、首页等等共有业务写在此模块" />
+
+    <Button
+        android:id="@+id/btn_start_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始下载" />
+
+    <TextView
+        android:id="@+id/tv_progress_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_start_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始上传" />
+
+    <TextView
+        android:id="@+id/tv_progress_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

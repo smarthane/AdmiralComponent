@@ -9,6 +9,8 @@ import okhttp3.ResponseBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -52,17 +54,20 @@ public interface EapiService {
     );
 
     /**
-     * 下载
+     * TODO 断点续传下载接口
      *
+     * 大文件需要加入这个判断，防止下载过程中写入到内存中
+     * @Headers("Content-type:application/octet-stream")
+     * @param start
      * @param url
-     * @param params
      * @return
      */
     @Streaming
+    @Headers("Content-type:application/octet-stream")
     @GET
     Observable<ResponseBody> downloadFile(
-            @Url String url,
-            @QueryMap Map<String, Object> params
+            @Header("RANGE") String start,
+            @Url String url
     );
 
     /**
