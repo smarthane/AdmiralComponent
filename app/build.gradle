@@ -25,6 +25,21 @@ android {
         }
     }
 
+    signingConfigs {
+        debug {
+            storeFile file("keystore/admiral.jks")
+            storePassword "111111"
+            keyAlias "smarthane"
+            keyPassword "111111"
+        }
+        release {
+            storeFile file("keystore/admiral.jks")
+            storePassword "111111"
+            keyAlias "smarthane"
+            keyPassword "111111"
+        }
+    }
+
     buildTypes {
 
         debug {
@@ -32,6 +47,7 @@ android {
             buildConfigField "boolean", "USE_CANARY", "true"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -39,9 +55,8 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             buildConfigField "boolean", "USE_CANARY", "false"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
-            minifyEnabled true
-            shrinkResources true
-            zipAlignEnabled true
+            minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -76,6 +91,10 @@ dependencies {
             exclude module: 'lib_common_service'
         }
         implementation(project(":module_netease")){
+            exclude module: 'lib_common_res'
+            exclude module: 'lib_common_service'
+        }
+        implementation(project(":module_wanandroid")){
             exclude module: 'lib_common_res'
             exclude module: 'lib_common_service'
         }

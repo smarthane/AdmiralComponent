@@ -41,6 +41,11 @@ public interface RouterHub {
      */
     String NETEASE = "/netease";
 
+    /**
+     * 玩Android
+     */
+    String WANANDROID = "/wanandroid";
+
     /****************************************
      * 服务组件, 用于给每个组件暴露特有的服务
      ***************************************/
@@ -107,4 +112,12 @@ public interface RouterHub {
     String NETEASE_HOMEACTIVITY = NETEASE + ACTIVITY + "/HomeActivity";
     String NETEASE_NEWSDETAILACTIVITY = NETEASE + ACTIVITY + "/NewsDetailActivity";
     String NETEASE_NEWSCHANNELACTIVITY = NETEASE + ACTIVITY + "/NewsChannelActivity";
+
+
+    /****************************************
+     * 玩Android分组
+     ***************************************/
+    String WANANDROID_SERVICE_WANANDROIDINFOSERVICE = WANANDROID + SERVICE + "/WanAndroidInfoService";
+
+    String WANANDROID_HOMEACTIVITY = WANANDROID + ACTIVITY + "/WanAndroidHomeActivity";
 }

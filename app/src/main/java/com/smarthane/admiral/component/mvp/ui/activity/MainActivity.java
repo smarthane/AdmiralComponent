@@ -10,8 +10,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.smarthane.admiral.component.common.sdk.core.RouterHub;
 import com.smarthane.admiral.component.common.sdk.util.ARouterUtils;
 import com.smarthane.admiral.component.common.service.gank.service.GankInfoService;
-import com.smarthane.admiral.component.common.service.gold.service.GoldInfoService;
 import com.smarthane.admiral.component.common.service.netease.service.NeteaseInfoService;
+import com.smarthane.admiral.component.common.service.wanandroid.service.WanAndroidInfoService;
 import com.smarthane.admiral.component.common.service.zhihu.service.ZhihuInfoService;
 import com.smarthane.admiral.core.base.BaseActivity;
 import com.smarthane.admiral.core.util.AdmiralUtils;
@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     private ZhihuInfoService mZhihuInfoService;
     private NeteaseInfoService mNeteaseInfoService;
+    private WanAndroidInfoService mWanAndroidInfoService;
 
     @Autowired(name = RouterHub.GANK_SERVICE_GANKINFOSERVICE)
     GankInfoService mGankInfoService;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
     private Button btnGank;
     private Button btnGold;
     private Button btnNetease;
+    private Button btnWanandroid;
 
     private long mPressedTime;
 
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity {
         btnGank = findViewById(R.id.bt_gank);
         btnGold = findViewById(R.id.bt_gold);
         btnNetease = findViewById(R.id.bt_netease);
+        btnWanandroid = findViewById(R.id.bt_wanandroid);
     }
 
     @Override
@@ -64,6 +67,7 @@ public class MainActivity extends BaseActivity {
         btnGank.setOnClickListener(mOnClickListener);
         btnGold.setOnClickListener(mOnClickListener);
         btnNetease.setOnClickListener(mOnClickListener);
+        btnWanandroid.setOnClickListener(mOnClickListener);
     }
 
     @Override
@@ -72,6 +76,7 @@ public class MainActivity extends BaseActivity {
         loadGankInfo();
         //loadGoldInfo();
         loadNeteaseInfo();
+        loadWanandroidInfo();
     }
 
     @Override
@@ -117,6 +122,16 @@ public class MainActivity extends BaseActivity {
 //        btnGold.setText(mGoldInfoService.getInfo().getName());
 //    }
 
+    private void loadWanandroidInfo() {
+        mWanAndroidInfoService = ARouter.getInstance().navigation(WanAndroidInfoService.class);
+        //当非集成调试阶段, 宿主 App 由于没有依赖其他组件, 所以使用不了对应组件提供的服务
+        if (mWanAndroidInfoService == null) {
+            btnWanandroid.setVisibility(View.GONE);
+            return;
+        }
+        btnWanandroid.setText(mWanAndroidInfoService.getInfo().getName());
+    }
+
     private void loadNeteaseInfo() {
         mNeteaseInfoService = ARouter.getInstance().navigation(NeteaseInfoService.class);
         //当非集成调试阶段, 宿主 App 由于没有依赖其他组件, 所以使用不了对应组件提供的服务
@@ -138,6 +153,8 @@ public class MainActivity extends BaseActivity {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY);
             } else if (v.getId() == R.id.bt_netease) {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.NETEASE_HOMEACTIVITY);
+            } else if (v.getId() == R.id.bt_wanandroid) {
+                ARouterUtils.navigation(MainActivity.this, RouterHub.WANANDROID_HOMEACTIVITY);
             }
         }
     };

@@ -1,1 +1,1 @@
-Admiral, 极简组件化快速开发框架（整合了Androidx+Rxjava2+Retrofit2+OkHttp3+ARouter+MVP等等主流开源项目,极易上手的组件化框架），本框架的目标是【一切从简】，让任何基础的安卓开发人员都能非常容易的上手MVP的组件化开发。
+Admiral, 极简组件化快速开发框架（整合了Androidx+Rxjava2+Retrofit2+OkHttp3+ARouter+MVP+FlutterBoost等等主流开源项目,极易上手的组件化框架），本框架的目标是【一切从简】，让任何基础的安卓开发人员都能非常容易的上手MVP的组件化开发。

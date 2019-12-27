@@ -8,3 +8,12 @@ include ':module_gank'
 include ':module_zhihu'
 include ':module_netease'
 include ':lib_common_third:lib_flycotablayout'
+// Flutter Module
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir,
+        'module_flutter/.android/include_flutter.groovy'
+))
+include ':module_flutter'
+// Flutter And Native, Hybrid Module
+include ':module_wanandroid'

@@ -1,7 +1,9 @@
 # AdmiralComponent
-Admiral, 极简组件化快速开发框架（整合了Androidx+Rxjava2+Retrofit2+OkHttp3+ARouter+MVP等等主流开源项目,极易上手的组件化框架）。
+Admiral, 极简组件化快速开发框架（整合了Androidx+Rxjava2+Retrofit2+OkHttp3+ARouter+MVP+FlutterBoost等等主流开源项目,极易上手的组件化框架）。
 
 本框架是参考jessyan大神的[MVPArms](https://github.com/JessYanCoding/MVPArms)和[ArmsComponent](https://github.com/JessYanCoding/ArmsComponent)，保留原有框架的思想基础去掉了dagger2的依赖注入框架从而简化了开发上手难度，并且采用android官方最新的组件库androidx。
+
+框架集成了闲鱼技术团队开源的[FlutterBoost](https://github.com/alibaba/flutter_boost)，可以非常简单方便的进行Native和Flutter的混合开发。详细可以参看【dev_hybrid_flutter】分支中的【module_wanandroid】和【module_flutter】模块。
 
 本框架的目标是【一切从简】，让任何基础的安卓开发人员都能非常容易的上手MVP的组件化开发。所有的仪式什么的都免了，把繁琐的都换成最简单的、直接达成最终目的，所有东西所有过程都简单化回归安卓最原始的开发。
 
@@ -16,7 +18,9 @@ Admiral, 极简组件化快速开发框架（整合了Androidx+Rxjava2+Retrofit2
 </p>  
 
 ## Wiki
-[**^_^ 参看ArmsComponent ^_^**](https://github.com/JessYanCoding/ArmsComponent/wiki)
+[1.**^_^ 参看ArmsComponent ^_^**](https://github.com/JessYanCoding/ArmsComponent/wiki)
+[2.**^_^ Flutter实战 ^_^**](https://book.flutterchina.club/)
+[3.**^_^ awesome-flutter ^_^**](https://github.com/Solido/awesome-flutter)
 
 ## About Me
 
