@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.smarthane.admiral.component.common.sdk" />
+    package="com.smarthane.admiral.component.common.sdk">
+    <application>
+        <service
+            android:name="com.smarthane.admiral.component.common.sdk.tinker.service.AdmiralResultService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+    </application>
+</manifest>

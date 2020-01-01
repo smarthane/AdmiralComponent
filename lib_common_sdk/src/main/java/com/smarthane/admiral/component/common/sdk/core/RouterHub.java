@@ -66,6 +66,9 @@ public interface RouterHub {
     String APP_MAINACTIVITY = APP + ACTIVITY + "/MainActivity";
 
 
+    String APP_TEST_TINKERACTIVITY = APP + ACTIVITY + "/TestTinkerActivity";
+
+
     /****************************************
      * Common 分组
      ***************************************/

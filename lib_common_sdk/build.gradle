@@ -33,6 +33,13 @@ dependencies {
         exclude module: 'support-annotations'
     }
     api project(":admiral")
-
-    //api "commons-beanutils:commons-beanutils:1.9.4"
+    // api "commons-beanutils:commons-beanutils:1.9.4"
+    api(rootProject.ext.dependencies["tinkerAndroidLib"]) {
+        changing = true
+    }
+    // Maven local cannot handle transist dependencies.
+    api(rootProject.ext.dependencies["tinkerAndroidLoader"]) {
+        changing = true
+    }
+    implementation rootProject.ext.dependencies["androidxMultidex"]
 }

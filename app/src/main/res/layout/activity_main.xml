@@ -62,6 +62,18 @@
             android:textColor="@color/public_color_959292"
             android:textSize="@dimen/public_font_24sp"
             android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/bt_tinker"
+            tools:text="Tinker"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/public_background"
+            android:textColor="@color/public_color_959292"
+            android:textSize="@dimen/public_font_24sp"
+            android:text="Tinker"/>
+
     </LinearLayout>
 
 </LinearLayout>

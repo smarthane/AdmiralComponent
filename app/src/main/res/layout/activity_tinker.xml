@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <include layout="@layout/public_include_title" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:text="Sample patch!" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_loadpatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="load patch" />
+
+    <Button
+        android:id="@+id/btn_loadlibrary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="load library" />
+
+    <Button
+        android:id="@+id/btn_cleanpatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clean patch" />
+
+    <Button
+        android:id="@+id/btn_killself"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kill self" />
+
+    <Button
+        android:id="@+id/btn_showinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show info" />
+</LinearLayout>

@@ -10,8 +10,12 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
+    <!--
+    框架基础application: com.smarthane.admiral.core.base.BaseApplication
+    集成Tinker热修复HotfixApplication: com.smarthane.admiral.component.common.sdk.tinker.HotfixApplication
+    -->
     <application
-        android:name="com.smarthane.admiral.core.base.BaseApplication"
+        android:name="com.smarthane.admiral.component.common.sdk.tinker.HotfixApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 测试Tinker页面 -->
+        <activity
+            android:name="com.smarthane.admiral.component.mvp.ui.activity.TestTinkerActivity"/>
 
         <!-- 只要依赖 AutoSize 就必须填写设计图尺寸, 否则报错, 不想使用 AutoSize 就不要依赖 AutoSize
         只要填写完设计图的尺寸, AutoSize 就会自动启动, 以下 dp 尺寸是根据公式 px / (dpi / 160) 求出, 运算时使用测试机的 dpi 即可

@@ -1,30 +1,32 @@
 ext {
 
     android = [
-               compileSdkVersion       : 29,
-               buildToolsVersion       : "29.0.2",
-               minSdkVersion           : 27,
-               targetSdkVersion        : 29,
-               versionCode             : 100,
-               versionName             : "1.0.0"
+                compileSdkVersion       : 29,
+                buildToolsVersion       : "29.0.2",
+                minSdkVersion           : 16,
+                targetSdkVersion        : 29,
+                versionCode             : 100,
+                versionName             : "1.0.0"
     ]
 
-     version = [
-                   androidxVersion         : "1.0.2",
-                   retrofitSdkVersion      : "2.6.0",
-                   dagger2SdkVersion       : "2.23.2",
-                   glideSdkVersion         : "4.10.0",
-                   butterknifeSdkVersion   : "9.0.0",
-                   rxlifecycleSdkVersion   : "1.0",
-                   rxlifecycle2SdkVersion  : "2.2.2",
-                   espressoSdkVersion      : "3.0.1",
-                   canarySdkVersion        : "1.6.3"
-     ]
+    version = [
+                androidxVersion         : "1.0.2",
+                retrofitSdkVersion      : "2.6.0",
+                dagger2SdkVersion       : "2.23.2",
+                glideSdkVersion         : "4.10.0",
+                butterknifeSdkVersion   : "9.0.0",
+                rxlifecycleSdkVersion   : "1.0",
+                rxlifecycle2SdkVersion  : "2.2.2",
+                espressoSdkVersion      : "3.0.1",
+                canarySdkVersion        : "1.6.3",
+                tinkerVersion           : "1.9.14.5"
+    ]
 
     dependencies = [
                 //androidx support
                 "androidxAppcompat"        : "androidx.appcompat:appcompat:${version["androidxVersion"]}",
                 "androidxMaterial"         : "com.google.android.material:material:1.2.0-alpha01",
+                "androidxMultidex"         : "androidx.multidex:multidex:2.0.0",
 
                 //network
                 "retrofit"                 : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
@@ -101,6 +103,11 @@ ext {
                 "smartRefreshHeader"       : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0",
                 "smartRefreshFooter"       : "com.scwang.smartrefresh:SmartRefreshFooter:1.1.0",
                 "baseRecyclerViewAdapter"  : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50",
-                "flycoTabLayout"           : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
+                "flycoTabLayout"           : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
+
+                //Tinker
+                "tinkerAndroidLib"         : "com.tencent.tinker:tinker-android-lib:${version["tinkerVersion"]}",
+                "tinkerAndroidLoader"      : "com.tencent.tinker:tinker-android-loader:${version["tinkerVersion"]}",
+                "tinkerAndroidAnno"        : "com.tencent.tinker:tinker-android-anno:${version["tinkerVersion"]}"
         ]
 }

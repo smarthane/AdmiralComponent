@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+// apply tinker插件
+apply from: "tinker.gradle"
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -8,6 +11,11 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Tinker Recommend
+    dexOptions {
+        jumboMode = true
     }
 
     defaultConfig {
@@ -25,6 +33,21 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file("./keystore/release.keystore")
+            storePassword "testres"
+            keyAlias "testres"
+            keyPassword "testres"
+        }
+        debug {
+            storeFile file("./keystore/debug.jks")
+            storePassword "111111"
+            keyAlias "smarthane"
+            keyPassword "111111"
+        }
+    }
+
     buildTypes {
 
         debug {
@@ -32,6 +55,7 @@ android {
             buildConfigField "boolean", "USE_CANARY", "true"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -39,9 +63,8 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             buildConfigField "boolean", "USE_CANARY", "false"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
-            minifyEnabled true
-            shrinkResources true
-            zipAlignEnabled true
+            minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

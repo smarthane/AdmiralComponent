@@ -38,6 +38,8 @@ public class MainActivity extends BaseActivity {
     private Button btnGold;
     private Button btnNetease;
 
+    private Button btnTinker;
+
     private long mPressedTime;
 
     @Override
@@ -56,6 +58,8 @@ public class MainActivity extends BaseActivity {
         btnGank = findViewById(R.id.bt_gank);
         btnGold = findViewById(R.id.bt_gold);
         btnNetease = findViewById(R.id.bt_netease);
+
+        btnTinker = findViewById(R.id.bt_tinker);
     }
 
     @Override
@@ -64,6 +68,8 @@ public class MainActivity extends BaseActivity {
         btnGank.setOnClickListener(mOnClickListener);
         btnGold.setOnClickListener(mOnClickListener);
         btnNetease.setOnClickListener(mOnClickListener);
+
+        btnTinker.setOnClickListener(mOnClickListener);
     }
 
     @Override
@@ -138,6 +144,8 @@ public class MainActivity extends BaseActivity {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY);
             } else if (v.getId() == R.id.bt_netease) {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.NETEASE_HOMEACTIVITY);
+            } else if (v.getId() == R.id.bt_tinker) {
+                ARouterUtils.navigation(MainActivity.this, RouterHub.APP_TEST_TINKERACTIVITY);
             }
         }
     };
