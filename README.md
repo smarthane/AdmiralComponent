@@ -35,7 +35,7 @@
 ## :sparkles: Branches
 * **【dev_native】**: 纯原生的Admiral开发框架。
 * **【dev_tinker】**: 集成Tinker热修复开发框架。
-* **【dev_hybrid_flutter】**: 集成Fluutter进行混合开发框架。
+* **【dev_hybrid_flutter】**: 集成Flutter进行混合开发框架。
 
 ## :sparkles: About Me
 
