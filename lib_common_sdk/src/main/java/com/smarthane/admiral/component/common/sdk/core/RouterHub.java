@@ -90,6 +90,8 @@ public interface RouterHub {
 
     String GANK_HOMEACTIVITY = GANK + ACTIVITY + "/HomeActivity";
 
+    String GANK_HOMEACTIVITY2 = GANK + ACTIVITY + "/HomeActivity2";
+
     /****************************************
      * 稀土掘金分组
      ***************************************/

@@ -133,7 +133,7 @@ public class MainActivity extends BaseActivity {
             if (v.getId() == R.id.bt_zhihu) {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.ZHIHU_HOMEACTIVITY);
             } else if (v.getId() == R.id.bt_gank) {
-                ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY);
+                ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY2);
             } else if (v.getId() == R.id.bt_gold) {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY);
             } else if (v.getId() == R.id.bt_netease) {

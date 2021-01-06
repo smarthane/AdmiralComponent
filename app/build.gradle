@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -18,11 +21,6 @@ android {
         versionName rootProject.ext.android["versionName"]
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
     }
 
     buildTypes {
@@ -44,6 +42,19 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+kapt {
+    // 开启Gradle 构建缓存支持
+    useBuildCache = true
+    // AROUTER_MODULE_NAME
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+    // 优化编译速度
+    javacOptions {
+        option("-Xmaxerrs", 500)
     }
 }
 
@@ -82,7 +93,7 @@ dependencies {
     }
 
     //tools
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
 
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]

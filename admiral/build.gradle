@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -27,6 +30,8 @@ android {
 }
 
 dependencies {
+    //kotlin支持
+    api rootProject.ext.dependencies["kotlin-stdlib-jdk8"]
     //androidx
     api rootProject.ext.dependencies["androidxAppcompat"]
     api rootProject.ext.dependencies["androidxMaterial"]
@@ -77,7 +82,7 @@ dependencies {
     }
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["glide"]
-    annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
+    kapt(rootProject.ext.dependencies["glide-compiler"]) {
         exclude module: 'jsr305'
     }
     //tools

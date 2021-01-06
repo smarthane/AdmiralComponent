@@ -4,6 +4,10 @@ if (isBuildModule.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
+// 支持kotlin
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -23,7 +27,6 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
                 includeCompileClasspath true
             }
         }
@@ -68,16 +71,29 @@ android {
     }
 }
 
+kapt {
+    // 开启Gradle 构建缓存支持
+    useBuildCache = true
+    // AROUTER_MODULE_NAME
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+    // 优化编译速度
+    javacOptions {
+        option("-Xmaxerrs", 500)
+    }
+}
+
 dependencies {
     if (isBuildModule.toBoolean()) {
         //tools
-        annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+        kapt rootProject.ext.dependencies["arouter-compiler"]
         //test
         debugImplementation rootProject.ext.dependencies["canary-debug"]
         releaseImplementation rootProject.ext.dependencies["canary-release"]
         testImplementation rootProject.ext.dependencies["canary-release"]
     } else {
-        compileOnly rootProject.ext.dependencies["arouter-compiler"]
+        kapt rootProject.ext.dependencies["arouter-compiler"]
         compileOnly rootProject.ext.dependencies["canary-debug"]
         compileOnly rootProject.ext.dependencies["canary-release"]
     }
