@@ -1,6 +1,6 @@
 package com.smarthane.admiral.core.integration.lifecycle;
 
-import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle4.android.FragmentEvent;
 
 /**
  * @author smarthane

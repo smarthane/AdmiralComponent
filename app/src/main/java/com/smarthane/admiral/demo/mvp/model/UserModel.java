@@ -12,7 +12,7 @@ import com.smarthane.admiral.demo.mvp.model.entity.User;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 public class UserModel extends BaseModel implements UserContract.Model {
 

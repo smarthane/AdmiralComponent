@@ -41,6 +41,11 @@ public interface RouterHub {
      */
     String NETEASE = "/netease";
 
+    /**
+     * jetpack
+     */
+    String JETPACK = "/jetpack";
+
     /****************************************
      * 服务组件, 用于给每个组件暴露特有的服务
      ***************************************/
@@ -109,4 +114,11 @@ public interface RouterHub {
     String NETEASE_HOMEACTIVITY = NETEASE + ACTIVITY + "/HomeActivity";
     String NETEASE_NEWSDETAILACTIVITY = NETEASE + ACTIVITY + "/NewsDetailActivity";
     String NETEASE_NEWSCHANNELACTIVITY = NETEASE + ACTIVITY + "/NewsChannelActivity";
+
+    /****************************************
+     * Jetpack分组
+     ***************************************/
+    String JETPACK_SERVICE_JETPACKINFOSERVICE = JETPACK + SERVICE + "/JetpackInfoService";
+
+    String JETPACK_HOMEACTIVITY = JETPACK + ACTIVITY + "/JetpackHomeActivity";
 }

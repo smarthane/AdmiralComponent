@@ -11,8 +11,8 @@ import com.smarthane.admiral.core.http.imageloader.glide.ImageConfigImpl;
 import com.smarthane.admiralcomponent.zhihu.R;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.DailyListBean;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.Consumer;
 
 /**
  * @author smarthane

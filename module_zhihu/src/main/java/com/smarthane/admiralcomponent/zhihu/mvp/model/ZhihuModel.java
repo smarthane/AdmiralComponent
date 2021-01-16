@@ -7,7 +7,7 @@ import com.smarthane.admiralcomponent.zhihu.mvp.model.api.service.ZhihuService;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.DailyListBean;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.ZhihuDetailBean;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * @author smarthane

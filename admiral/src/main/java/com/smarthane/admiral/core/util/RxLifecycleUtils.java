@@ -19,13 +19,13 @@ import com.smarthane.admiral.core.integration.lifecycle.ActivityLifecycleable;
 import com.smarthane.admiral.core.integration.lifecycle.FragmentLifecycleable;
 import com.smarthane.admiral.core.integration.lifecycle.Lifecycleable;
 import com.smarthane.admiral.core.mvp.IView;
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.RxLifecycle;
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.android.FragmentEvent;
-import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle4.LifecycleTransformer;
+import com.trello.rxlifecycle4.RxLifecycle;
+import com.trello.rxlifecycle4.android.ActivityEvent;
+import com.trello.rxlifecycle4.android.FragmentEvent;
+import com.trello.rxlifecycle4.android.RxLifecycleAndroid;
 
-import io.reactivex.annotations.NonNull;
+import io.reactivex.rxjava3.annotations.NonNull;
 
 /**
  * ================================================

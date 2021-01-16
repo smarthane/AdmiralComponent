@@ -33,7 +33,9 @@ dependencies {
     api project(":lib_common_sdk")
 
     api rootProject.ext.dependencies["autosize"]
-    api rootProject.ext.dependencies["lottie"]
+    api(rootProject.ext.dependencies["lottie"]) {
+        exclude module: 'okio'
+    }
     api rootProject.ext.dependencies["smartRefreshLayout"]
     api rootProject.ext.dependencies["baseRecyclerViewAdapter"]
 }

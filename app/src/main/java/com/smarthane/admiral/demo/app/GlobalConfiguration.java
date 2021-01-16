@@ -18,7 +18,7 @@ import com.smarthane.admiral.demo.mvp.model.api.Api;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.rx_cache2.internal.RxCache;
+import io.rx_cache3.runtime.internal.RxCache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 

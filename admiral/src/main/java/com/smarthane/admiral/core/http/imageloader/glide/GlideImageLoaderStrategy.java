@@ -17,10 +17,10 @@ import com.smarthane.admiral.core.http.imageloader.BaseImageLoaderStrategy;
 import com.smarthane.admiral.core.util.LogUtils;
 import com.smarthane.admiral.core.util.PreconditionUtils;
 
-import io.reactivex.Completable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @author smarthane

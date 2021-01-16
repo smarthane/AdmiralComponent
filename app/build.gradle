@@ -90,6 +90,10 @@ dependencies {
             exclude module: 'lib_common_res'
             exclude module: 'lib_common_service'
         }
+        implementation(project(":module_jetpack")){
+            exclude module: 'lib_common_res'
+            exclude module: 'lib_common_service'
+        }
     }
 
     //tools

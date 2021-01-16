@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import io.rx_cache2.internal.RxCache;
+import io.rx_cache3.runtime.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
 import com.smarthane.admiral.core.base.rx.errorhandler.RxErrorHandler;
 import okhttp3.Dispatcher;
@@ -25,7 +25,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -74,7 +74,7 @@ public class ClientModule {
             }
             builder
                     // 使用 RxJava
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     // 使用 Gson addConverterFactory 只有先添加到addConverterFactory可以正常使用
                     .addConverterFactory(GsonConverterFactory.create(globalConfigModule.provideGson()));
             mRetrofit = builder.build();

@@ -6,8 +6,8 @@ import com.smarthane.admiralcomponent.gank.mvp.model.entity.GankItemBean;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.rx_cache2.LifeCache;
+import io.reactivex.rxjava3.core.Observable;
+import io.rx_cache3.runtime.LifeCache;
 
 /**
  * @author smarthane

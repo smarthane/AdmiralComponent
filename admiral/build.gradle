@@ -33,31 +33,32 @@ dependencies {
     //kotlin支持
     api rootProject.ext.dependencies["kotlin-stdlib-jdk8"]
     //androidx
-    api rootProject.ext.dependencies["androidxAppcompat"]
+    api(rootProject.ext.dependencies["androidxAppcompat"]) {
+    }
     api rootProject.ext.dependencies["androidxMaterial"]
 
-    //rxjava2
-    api rootProject.ext.dependencies["rxjava2"]
-    api(rootProject.ext.dependencies["rxandroid2"]) {
+    //rxjava3
+    api rootProject.ext.dependencies["rxjava3"]
+    api(rootProject.ext.dependencies["rxandroid3"]) {
         exclude module: 'rxjava'
     }
-    api(rootProject.ext.dependencies["rxcache2"]) {
+    //rxcache3
+    api(project(":lib_common_third:lib_rxcache3")) {
         exclude module: 'rxjava'
-        // exclude module: 'dagger'
-        exclude module: 'api'
-    }
-    api(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
+        exclude module: 'rxandroid'
         exclude module: 'gson'
     }
-    api(rootProject.ext.dependencies["rxlifecycle2"]) {
+    api(rootProject.ext.dependencies["rxlifecycle4"]) {
         exclude module: 'rxjava'
         exclude module: 'jsr305'
+        exclude module: 'kotlin-stdlib-jdk7'
     }
-    api(rootProject.ext.dependencies["rxlifecycle2-android"]) {
+    api(rootProject.ext.dependencies["rxlifecycle4-android"]) {
         exclude module: 'support-annotations'
         exclude module: 'rxjava'
         exclude module: 'rxandroid'
         exclude module: 'rxlifecycle'
+        exclude module: 'kotlin-stdlib-jdk7'
     }
     api(rootProject.ext.dependencies["rxpermissions2"]) {
         exclude module: 'rxjava'
@@ -74,13 +75,16 @@ dependencies {
         exclude module: 'okio'
         exclude module: 'retrofit'
     }
-    api(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+    api(rootProject.ext.dependencies["retrofit-adapter-rxjava3"]) {
         exclude module: 'rxjava'
         exclude module: 'okhttp'
         exclude module: 'retrofit'
         exclude module: 'okio'
     }
-    api rootProject.ext.dependencies["okhttp3"]
+    api(rootProject.ext.dependencies["okhttp3"]) {
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies["okio"]
     api rootProject.ext.dependencies["glide"]
     kapt(rootProject.ext.dependencies["glide-compiler"]) {
         exclude module: 'jsr305'

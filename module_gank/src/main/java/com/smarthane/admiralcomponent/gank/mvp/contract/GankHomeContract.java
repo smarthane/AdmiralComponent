@@ -9,7 +9,7 @@ import com.smarthane.admiralcomponent.gank.mvp.model.entity.GankItemBean;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * @author smarthane

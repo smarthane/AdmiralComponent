@@ -12,7 +12,7 @@ import com.smarthane.admiral.core.util.PreconditionUtils;
 
 import java.lang.reflect.Proxy;
 
-import io.rx_cache2.internal.RxCache;
+import io.rx_cache3.runtime.internal.RxCache;
 import retrofit2.Retrofit;
 
 /**

@@ -4,7 +4,7 @@ import com.smarthane.admiral.core.mvp.IModel;
 import com.smarthane.admiral.core.mvp.IView;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.DailyListBean;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * @author smarthane

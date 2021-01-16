@@ -4,12 +4,12 @@ import androidx.annotation.Nullable;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.concurrent.Callable;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Single;
-import io.reactivex.SingleSource;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleSource;
+import io.reactivex.rxjava3.functions.Supplier;
 import retrofit2.Retrofit;
 
 /**
@@ -35,18 +35,18 @@ public class RetrofitServiceProxyHandler implements InvocationHandler {
             // 如果方法返回值是 Observable 的话，则包一层再返回，
             // 只包一层 defer 由外部去控制耗时方法以及网络请求所处线程，
             // 如此对原项目的影响为 0，且更可控。
-            return Observable.defer(new Callable<ObservableSource<?>>() {
+            return Observable.defer(new Supplier<ObservableSource<?>>() {
                 @Override
-                public ObservableSource<?> call() throws Exception {
+                public ObservableSource<?> get() throws Throwable {
                     // 执行真正的 Retrofit 动态代理的方法
                     return (Observable) method.invoke(getRetrofitService(), args);
                 }
             });
         } else if (method.getReturnType() == Single.class) {
             // 如果方法返回值是 Single 的话，则包一层再返回。
-            return Single.defer(new Callable<SingleSource<?>>() {
+            return Single.defer(new Supplier<SingleSource<?>>() {
                 @Override
-                public SingleSource<?> call() throws Exception {
+                public SingleSource<?> get() throws Throwable {
                     // 执行真正的 Retrofit 动态代理的方法
                     return (Single) method.invoke(getRetrofitService(), args);
                 }

@@ -16,10 +16,10 @@ import com.smarthane.admiral.core.integration.cache.Cache;
 import com.smarthane.admiral.core.integration.cache.CacheType;
 import com.smarthane.admiral.core.integration.lifecycle.FragmentLifecycleable;
 import com.smarthane.admiral.core.mvp.IPresenter;
-import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle4.android.FragmentEvent;
 
-import io.reactivex.subjects.BehaviorSubject;
-import io.reactivex.subjects.Subject;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import io.reactivex.rxjava3.subjects.Subject;
 
 /**
  * @author smarthane

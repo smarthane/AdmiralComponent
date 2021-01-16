@@ -15,11 +15,11 @@ import com.smarthane.admiralcomponent.gank.mvp.ui.adapter.GankHomeAdapter;
 
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import com.smarthane.admiral.core.base.rx.errorhandler.ErrorHandleSubscriber;
 import com.smarthane.admiral.core.base.rx.errorhandler.RetryWithDelay;
 
@@ -34,7 +34,7 @@ public class GankHomePresenter extends BasePresenter<GankHomeContract.Model, Gan
 
 
     private GankHomeAdapter gankHomeAdapter;
-    private int lastPage = 1;
+    private int lastPage = 3;
     private int preEndIndex;
 
     private GankHomePresenter(GankHomeContract.Model model, GankHomeContract.View rootView) {
@@ -59,7 +59,7 @@ public class GankHomePresenter extends BasePresenter<GankHomeContract.Model, Gan
     public void requestGirls(final boolean pullToRefresh) {
         if (pullToRefresh) {
             //下拉刷新默认只请求第一页
-            lastPage = 1;
+            lastPage = 3;
         }
 
         mModel.getGirlList(NUMBER_OF_PAGE, lastPage)

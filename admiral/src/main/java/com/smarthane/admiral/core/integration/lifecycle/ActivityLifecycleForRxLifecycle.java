@@ -6,9 +6,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle4.android.ActivityEvent;
 
-import io.reactivex.subjects.Subject;
+import io.reactivex.rxjava3.subjects.Subject;
 
 /**
  * @author smarthane

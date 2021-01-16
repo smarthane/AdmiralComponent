@@ -4,7 +4,7 @@ import com.smarthane.admiralcomponent.zhihu.mvp.model.api.Api;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.DailyListBean;
 import com.smarthane.admiralcomponent.zhihu.mvp.model.entity.ZhihuDetailBean;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import com.smarthane.admiral.core.http.retrofiturlmanager.RetrofitUrlManager;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;

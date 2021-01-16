@@ -7,7 +7,7 @@ import com.smarthane.admiralcomponent.netease.mvp.model.entity.NewsSummary;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

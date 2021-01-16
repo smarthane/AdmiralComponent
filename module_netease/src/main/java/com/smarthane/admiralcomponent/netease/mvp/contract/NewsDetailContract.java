@@ -6,7 +6,7 @@ import com.smarthane.admiralcomponent.netease.mvp.model.entity.NewsDetail;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * @author smarthane

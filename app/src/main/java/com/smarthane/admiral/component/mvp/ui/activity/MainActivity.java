@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.smarthane.admiral.component.common.sdk.core.RouterHub;
 import com.smarthane.admiral.component.common.sdk.util.ARouterUtils;
 import com.smarthane.admiral.component.common.service.gank.service.GankInfoService;
-import com.smarthane.admiral.component.common.service.gold.service.GoldInfoService;
+import com.smarthane.admiral.component.common.service.jetpack.service.JetpackInfoService;
 import com.smarthane.admiral.component.common.service.netease.service.NeteaseInfoService;
 import com.smarthane.admiral.component.common.service.zhihu.service.ZhihuInfoService;
 import com.smarthane.admiral.core.base.BaseActivity;
@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     private ZhihuInfoService mZhihuInfoService;
     private NeteaseInfoService mNeteaseInfoService;
+    private JetpackInfoService mJetpackInfoService;
 
     @Autowired(name = RouterHub.GANK_SERVICE_GANKINFOSERVICE)
     GankInfoService mGankInfoService;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
     private Button btnGank;
     private Button btnGold;
     private Button btnNetease;
+    private Button btnJetpack;
 
     private long mPressedTime;
 
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity {
         btnGank = findViewById(R.id.bt_gank);
         btnGold = findViewById(R.id.bt_gold);
         btnNetease = findViewById(R.id.bt_netease);
+        btnJetpack = findViewById(R.id.bt_jetpack);
     }
 
     @Override
@@ -64,6 +67,7 @@ public class MainActivity extends BaseActivity {
         btnGank.setOnClickListener(mOnClickListener);
         btnGold.setOnClickListener(mOnClickListener);
         btnNetease.setOnClickListener(mOnClickListener);
+        btnJetpack.setOnClickListener(mOnClickListener);
     }
 
     @Override
@@ -72,6 +76,7 @@ public class MainActivity extends BaseActivity {
         loadGankInfo();
         //loadGoldInfo();
         loadNeteaseInfo();
+        loadJetpackInfo();
     }
 
     @Override
@@ -108,6 +113,16 @@ public class MainActivity extends BaseActivity {
         btnGank.setText(mGankInfoService.getInfo().getName());
     }
 
+    private void loadJetpackInfo() {
+        mJetpackInfoService = ARouter.getInstance().navigation(JetpackInfoService.class);
+        // 当非集成调试阶段, 宿主 App 由于没有依赖其他组件, 所以使用不了对应组件提供的服务
+        if (mJetpackInfoService == null) {
+            btnJetpack.setVisibility(View.GONE);
+            return;
+        }
+        btnJetpack.setText(mJetpackInfoService.getInfo().getName());
+    }
+
 //    private void loadGoldInfo() {
 //        //当非集成调试阶段, 宿主 App 由于没有依赖其他组件, 所以使用不了对应组件提供的服务
 //        if (mGoldInfoService == null) {
@@ -138,6 +153,8 @@ public class MainActivity extends BaseActivity {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.GANK_HOMEACTIVITY);
             } else if (v.getId() == R.id.bt_netease) {
                 ARouterUtils.navigation(MainActivity.this, RouterHub.NETEASE_HOMEACTIVITY);
+            } else if (v.getId() == R.id.bt_jetpack) {
+                ARouterUtils.navigation(MainActivity.this, RouterHub.JETPACK_HOMEACTIVITY);
             }
         }
     };

@@ -1,0 +1,29 @@
+apply from:"../common_component_build.gradle"
+
+android {
+    // 给 Module 内的资源名增加前缀, 避免资源名冲突
+    resourcePrefix "jetpack_"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // 因为 lib_common_res 依赖了 lib_common_sdk, 所以如果业务模块需要公共 UI 组件就依赖 lib_common_res,
+    // 如果不需要就只依赖 lib_common_sdk
+    implementation project(":lib_common_res")
+    implementation project(":lib_common_service")
+
+    // kotlin
+    implementation rootProject.ext.dependencies["kotlin-core"]
+    // navigation
+    implementation rootProject.ext.dependencies["androidxNavigation"]
+    // lifecycle
+    implementation rootProject.ext.dependencies["lifecycle-runtime-ktx"]
+    implementation rootProject.ext.dependencies["lifecycle-common-java8"]
+    implementation rootProject.ext.dependencies["lifecycle-extensions"]
+    // viewModel
+    implementation rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
+    implementation rootProject.ext.dependencies["kotlin-fragment"]
+    // liveData
+    implementation rootProject.ext.dependencies["lifecycle-livedata-ktx"]
+    implementation rootProject.ext.dependencies["unpeek-livedata"]
+}

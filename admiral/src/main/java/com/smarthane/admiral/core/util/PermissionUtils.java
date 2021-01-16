@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.smarthane.admiral.core.base.rx.errorhandler.ErrorHandleSubscriber;
 import com.smarthane.admiral.core.base.rx.errorhandler.RxErrorHandler;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions3.Permission;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
